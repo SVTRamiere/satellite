@@ -1,39 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carte Satellite Météo</title>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+e2ZbEX5I5zT5w+qtvGy7ekke1FLJoie0t5d3rW5M="
-    crossorigin=""
-  />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <title>Carte Satellite Météo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Feuille de style Leaflet (sans integrity) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="map"></div>
-  <div class="legend">
-    <h4>Légende météo</h4>
-    <ul>
-      <li><b>Précipitations</b></li>
-      <li><b>Nuages</b></li>
-      <li><b>Température</b></li>
-      <li><b>Vent</b></li>
-    </ul>
-  </div>
-  <div class="layer-control">
-    <label><input type="checkbox" id="precip" checked> Précipitations</label><br />
-    <label><input type="checkbox" id="clouds" checked> Nuages</label><br />
-    <label><input type="checkbox" id="temp" checked> Température</label><br />
-    <label><input type="checkbox" id="wind" checked> Vent</label>
-  </div>
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1j8Mk15gqjkyxy6RM60/dhGQXjVSEgZLkZMGsZnk="
-    crossorigin=""
-  ></script>
-  <script src="script.js"></script>
+    <div id="map"></div>
+
+    <div class="legend">
+        <h3>Légende météo</h3>
+        <ul>
+            <li><strong>Précipitations</strong> PRÉCIPITATION</li>
+            <li><strong>Nuages</strong> NUAGES</li>
+            <li><strong>Température</strong> TEMPÉRATURE</li>
+            <li><strong>Vent</strong> VENT</li>
+        </ul>
+    </div>
+
+    <!-- Script Leaflet sans integrity -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="script.js"></script>
 </body>
 </html>
