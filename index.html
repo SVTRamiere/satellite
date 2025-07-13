@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carte Satellite Météo-France</title>
+  <meta name="viewport" content="width=800, height=600, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    #map {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.min.js"></script>
+  <script>
+    var map = L.map('map', {
+      center: [48.1, -2.8],
+      zoom: 6,
+      timeDimension: true,
+      timeDimensionOptions: {
+        timeInterval: "PT3H/PT0H",
+        period: "PT1H"
+      },
+      timeDimensionControl: true
+    });
+
+    var wmsUrl = "https://rpcache-aa.meteofrance.com/geoservices/CCG-mapcache-WMS";
+
+    var wmsLayer = L.tileLayer.wms(wmsUrl, {
+      layers: 'MOSAIQUE_CINQ_SAT',
+      format: 'image/png',
+      transparent: true,
+      version: '1.3.0',
+      attribution: "© Météo-France"
+    });
+
+    var tdLayer = L.timeDimension.layer.wms(wmsLayer, {
+      updateTimeDimension: true,
+      requestTimeFromCapabilities: false,
+      wmsVersion: "1.3.0"
+    });
+
+    tdLayer.addTo(map);
+  </script>
+</body>
+</html>
