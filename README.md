@@ -1,0 +1,1 @@
+test intégration carte météo
