@@ -2,36 +2,51 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Carte Satellite Météo - France</title>
-  <meta name="viewport" content="width=800, height=600, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte Satellite Météo-France</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha512-pMprFmmCbL5ZocOe4z0EGY3opqxT2e6m7ORtTyL8qfHK6tEXFeh3nOMGV7XZo12WZ9ZzjGDeUghsIoLLZxvwvA=="
+    crossorigin=""
+  />
   <style>
-    html, body, #map {
-      height: 600px;
-      width: 800px;
+    html, body {
       margin: 0;
       padding: 0;
     }
+    #map {
+      width: 800px;
+      height: 600px;
+      margin: auto;
+    }
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
   <div id="map"></div>
-  <script>
-    const map = L.map('map').setView([48.4, -2.8], 6); // Bretagne centrée, zoom France
 
-    // Fond satellite ESRI
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution: '© Esri, Earthstar Geographics',
-      maxZoom: 18
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha512-vA3XmU+gk7nHYoQQe4YgU1iEUVZ0RoqjlLC5GCStZLBNPKPSMeCJHP8XpY4dFCKVh9LQdyXsAgTZvHzW52ztaQ=="
+    crossorigin=""
+  ></script>
+  <script>
+    const map = L.map('map').setView([48.3, -2.8], 6); // Centré sur la Bretagne
+
+    // Couche satellite (fond)
+    const esriSat = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, Earthstar Geographics',
+      maxZoom: 19
     }).addTo(map);
 
-    // Couches nuages ESRI
-    L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/World_Weather/MapServer/tile/{z}/{y}/{x}', {
-      attribution: '© Esri Weather',
-      opacity: 0.7,
-      maxZoom: 18
+    // Couche nuages ESRI
+    const esriClouds = L.tileLayer(
+      'https://services.arcgisonline.com/arcgis/rest/services/World_Weather/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Données ESRI Météo',
+      maxZoom: 12,
+      opacity: 0.5
     }).addTo(map);
   </script>
 </body>
