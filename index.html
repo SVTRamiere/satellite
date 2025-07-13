@@ -2,19 +2,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Carte satellite météo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="leaflet.css" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carte Satellite Météo</title>
+  <link rel="stylesheet" href="leaflet-1.9.3.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div id="map"></div>
   <div id="legend">
     <h3>Légende météo</h3>
-    <img src="legend_icons.png" alt="Légende météo" width="100%" />
+    <ul>
+      <li><img src="icon_precipitation.png" alt="Précipitations"> PRÉCIPITATION</li>
+      <li><img src="icon_clouds.png" alt="Nuages"> NUAGES</li>
+      <li><img src="icon_temperature.png" alt="Température"> TEMPÉRATURE</li>
+      <li><img src="icon_wind.png" alt="Vent"> VENT</li>
+    </ul>
   </div>
-  <script src="leaflet.js"></script>
+  <script src="leaflet-1.9.3.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
