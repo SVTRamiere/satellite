@@ -1,33 +1,21 @@
-const map = L.map("map").setView([48.5, -2.7], 6);
+var map = L.map('map').setView([48.3, -4.3], 6);
 
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+var satellite = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const precip = L.tileLayer("https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb");
-const clouds = L.tileLayer("https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb");
-const temp = L.tileLayer("https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb");
-const wind = L.tileLayer("https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb");
+// Couches météo (fictives, en attente de vraies URLs)
+var clouds = L.tileLayer('https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb');
+var precip = L.tileLayer('https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb');
+var temp = L.tileLayer('https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb');
+var wind = L.tileLayer('https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb');
 
-precip.addTo(map);
-clouds.addTo(map);
-temp.addTo(map);
-wind.addTo(map);
+var baseMaps = { "Satellite": satellite };
+var overlayMaps = {
+    "Nuages": clouds,
+    "Précipitations": precip,
+    "Température": temp,
+    "Vent": wind
+};
 
-document.getElementById("precip").addEventListener("change", (e) => {
-  if (e.target.checked) map.addLayer(precip);
-  else map.removeLayer(precip);
-});
-document.getElementById("clouds").addEventListener("change", (e) => {
-  if (e.target.checked) map.addLayer(clouds);
-  else map.removeLayer(clouds);
-});
-document.getElementById("temp").addEventListener("change", (e) => {
-  if (e.target.checked) map.addLayer(temp);
-  else map.removeLayer(temp);
-});
-document.getElementById("wind").addEventListener("change", (e) => {
-  if (e.target.checked) map.addLayer(wind);
-  else map.removeLayer(wind);
-});
+L.control.layers(baseMaps, overlayMaps).addTo(map);

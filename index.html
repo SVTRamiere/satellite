@@ -1,31 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <title>Carte Satellite Météo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Feuille de style Leaflet (sans integrity) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>Carte Satellite Météo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="leaflet.css" />
+  <script src="leaflet.js"></script>
 </head>
 <body>
-    <div id="map"></div>
-
-    <div class="legend">
-        <h3>Légende météo</h3>
-        <ul>
-            <li><strong>Précipitations</strong> PRÉCIPITATION</li>
-            <li><strong>Nuages</strong> NUAGES</li>
-            <li><strong>Température</strong> TEMPÉRATURE</li>
-            <li><strong>Vent</strong> VENT</li>
-        </ul>
-    </div>
-
-    <!-- Script Leaflet sans integrity -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="script.js"></script>
+  <div id="map"></div>
+  <div id="legend" class="legend">
+    <h3>Légende météo</h3>
+    <ul>
+      <li><strong>Précipitations</strong> PRÉCIPITATION</li>
+      <li><strong>Nuages</strong> NUAGES</li>
+      <li><strong>Température</strong> TEMPÉRATURE</li>
+      <li><strong>Vent</strong> VENT</li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

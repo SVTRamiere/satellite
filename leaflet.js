@@ -1,0 +1,1 @@
+/* Simulé: utiliser un vrai leaflet.js en production */ var L = {};
