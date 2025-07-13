@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Carte Satellite Météo</title>
+  <meta charset="utf-8">
+  <title>Carte satellite météo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <style>
     html, body {
       margin: 0;
-      height: 100%;
-      background: #000;
+      padding: 0;
     }
     #map {
-      width: 100%;
-      height: 100%;
-    }
-    .leaflet-control-layers-expanded {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 5px;
+      width: 100vw;
+      height: 100vh;
     }
   </style>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    crossorigin=""
-  />
 </head>
-<
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    const map = L.map('map').setView([48.4, -4.6], 6); // Bretagne par défaut
+
+    // Fond de carte ESRI satellite
+    const esri = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '© Esri, Earthstar Geographics',
+        maxZoom: 18
+      }
+    ).addTo(map);
+
+    // Couches météo OpenWeatherMap : Nuages (nécessite une clé API)
+    const clouds = L.tileLayer(
+      'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb', {
+        attribution: 'Données météo © OpenWeatherMap',
+        opacity: 0.7
+      }
+    ).addTo(map);
+
+    // Contrôle des couches
+    const baseMaps = {
+      "Satellite ESRI": esri
+    };
+    const overlayMaps = {
+      "Nuages (OpenWeatherMap)": clouds
+    };
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+  </script>
+</body>
+</html>
