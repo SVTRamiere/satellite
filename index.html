@@ -2,51 +2,56 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Carte satellite météo</title>
+  <title>Carte Satellite Météo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
   <style>
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
     }
     #map {
-      width: 100vw;
       height: 100vh;
+      width: 100vw;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
   <script>
-    const map = L.map('map').setView([48.4, -4.6], 6); // Bretagne par défaut
+    const map = L.map('map').setView([48.4, -4.6], 6); // Vue sur la Bretagne
 
-    // Fond de carte ESRI satellite
+    // Fond ESRI satellite
     const esri = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: '© Esri, Earthstar Geographics',
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      {
+        attribution: '© Esri',
         maxZoom: 18
       }
     ).addTo(map);
 
-    // Couches météo OpenWeatherMap : Nuages (nécessite une clé API)
+    // Couche météo OpenWeatherMap - nuages
     const clouds = L.tileLayer(
-      'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb', {
-        attribution: 'Données météo © OpenWeatherMap',
-        opacity: 0.7
+      'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb',
+      {
+        attribution: 'Données © OpenWeatherMap',
+        opacity: 0.6
       }
     ).addTo(map);
 
     // Contrôle des couches
-    const baseMaps = {
-      "Satellite ESRI": esri
-    };
-    const overlayMaps = {
-      "Nuages (OpenWeatherMap)": clouds
-    };
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    L.control.layers(
+      { "Satellite": esri },
+      { "Nuages": clouds }
+    ).addTo(map);
   </script>
 </body>
 </html>
