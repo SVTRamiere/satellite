@@ -1,0 +1,23 @@
+
+body, html {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+#legend {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: white;
+  padding: 8px;
+  font-size: 0.9em;
+  border: 1px solid #aaa;
+  z-index: 1000;
+  max-width: 250px;
+}
