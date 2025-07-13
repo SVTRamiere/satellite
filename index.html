@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Carte Satellite Météo</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="leaflet.css" />
-  <script src="leaflet.js"></script>
+    <meta charset="UTF-8">
+    <title>Carte Satellite Météo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <script src="leaflet-1.9.3.min.js"></script>
+    <script src="https://unpkg.com/leaflet.imageoverlay.rotated@0.2.1/leaflet.imageoverlay.rotated.js"></script>
 </head>
 <body>
-  <div id="map"></div>
-  <div id="legend" class="legend">
-    <h3>Légende météo</h3>
-    <ul>
-      <li><strong>Précipitations</strong> PRÉCIPITATION</li>
-      <li><strong>Nuages</strong> NUAGES</li>
-      <li><strong>Température</strong> TEMPÉRATURE</li>
-      <li><strong>Vent</strong> VENT</li>
-    </ul>
-  </div>
-  <script src="script.js"></script>
+    <div id="map"></div>
+    <div id="legend">
+        <h3>Légende météo</h3>
+        <ul>
+            <li><b>Précipitations</b> PRÉCIPITATION</li>
+            <li><b>Nuages</b> NUAGES</li>
+            <li><b>Température</b> TEMPÉRATURE</li>
+            <li><b>Vent</b> VENT</li>
+        </ul>
+    </div>
+    <div id="buttons">
+        <button id="zoom-bretagne">📍 Bretagne</button>
+        <button id="capture">📷 Capture</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
