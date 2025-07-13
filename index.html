@@ -4,70 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carte Satellite Météo</title>
-
-  <!-- ✅ Lien vers Leaflet en CDN (à jour) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-sA+e2ZbEX5I5zT5w+qtvGy7ekke1FLJoie0t5d3rW5M="
     crossorigin=""
   />
-  <style>
-    #map {
-      height: 100vh;
-      width: 100%;
-    }
-    .legend {
-      position: absolute;
-      top: 80px;
-      right: 10px;
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-family: sans-serif;
-    }
-    .legend h4 {
-      margin-top: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="map"></div>
   <div class="legend">
     <h4>Légende météo</h4>
     <ul>
-      <li><b>Précipitations</b> PRÉCIPITATION</li>
-      <li><b>Nuages</b> NUAGES</li>
-      <li><b>Température</b> TEMPÉRATURE</li>
-      <li><b>Vent</b> VENT</li>
+      <li><b>Précipitations</b></li>
+      <li><b>Nuages</b></li>
+      <li><b>Température</b></li>
+      <li><b>Vent</b></li>
     </ul>
   </div>
-
-  <!-- ✅ Script Leaflet depuis CDN -->
+  <div class="layer-control">
+    <label><input type="checkbox" id="precip" checked> Précipitations</label><br />
+    <label><input type="checkbox" id="clouds" checked> Nuages</label><br />
+    <label><input type="checkbox" id="temp" checked> Température</label><br />
+    <label><input type="checkbox" id="wind" checked> Vent</label>
+  </div>
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-o9N1j8Mk15gqjkyxy6RM60/dhGQXjVSEgZLkZMGsZnk="
     crossorigin=""
   ></script>
-
-  <!-- Script principal -->
-  <script>
-    const map = L.map("map").setView([48.5, -2.7], 6);
-
-    // Fond de carte
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-
-    // ✅ Exemple d'une couche météo satellite ESRI
-    const esriLayer = L.tileLayer(
-      "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-      {
-        attribution:
-          "Tiles © Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
-      }
-    ).addTo(map);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
