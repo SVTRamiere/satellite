@@ -2,34 +2,28 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Carte Satellite Météo</title>
+  <title>Carte Satellite + Couches Météo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
   <style>
-    html, body {
+    html, body, #map {
       margin: 0;
       padding: 0;
       height: 100%;
-    }
-    #map {
-      height: 100vh;
-      width: 100vw;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([48.4, -4.6], 6); // Vue sur la Bretagne
+    const map = L.map('map').setView([48.4, -4.6], 6); // Vue Bretagne
 
-    // Fond ESRI satellite
     const esri = L.tileLayer(
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       {
@@ -38,20 +32,39 @@
       }
     ).addTo(map);
 
-    // Couche météo OpenWeatherMap - nuages
-    const clouds = L.tileLayer(
-      'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=0b9fa4a8f48537427496561d2fb532bb',
-      {
-        attribution: 'Données © OpenWeatherMap',
-        opacity: 0.6
-      }
-    ).addTo(map);
+    // 🔑 Clé OpenWeatherMap
+    const apiKey = '0b9fa4a8f48537427496561d2fb532bb';
 
-    // Contrôle des couches
-    L.control.layers(
-      { "Satellite": esri },
-      { "Nuages": clouds }
-    ).addTo(map);
+    // 🌥️ Couches météo disponibles
+    const clouds = L.tileLayer(`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+      attribution: 'Nuages © OpenWeatherMap',
+      opacity: 0.6
+    });
+
+    const temp = L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+      attribution: 'Température © OpenWeatherMap',
+      opacity: 0.6
+    });
+
+    const wind = L.tileLayer(`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+      attribution: 'Vent © OpenWeatherMap',
+      opacity: 0.6
+    });
+
+    const precip = L.tileLayer(`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+      attribution: 'Précipitations © OpenWeatherMap',
+      opacity: 0.6
+    });
+
+    // 🎛️ Contrôleur de couches
+    const overlayMaps = {
+      "Nuages": clouds,
+      "Température": temp,
+      "Vent": wind,
+      "Précipitations": precip
+    };
+
+    L.control.layers({ "Satellite": esri }, overlayMaps).addTo(map);
   </script>
 </body>
 </html>
